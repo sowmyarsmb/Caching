@@ -11,7 +11,6 @@ import android.util.Log;
 import android.widget.Toast;
 import com.example.prashantadvait_foundation.R;
 import com.example.prashantadvait_foundation.Utils.ImageCache;
-import com.example.prashantadvait_foundation.Utils.ImageConverter;
 import com.example.prashantadvait_foundation.adapters.GridAdapter;
 import com.example.prashantadvait_foundation.network.APIService;
 import com.example.prashantadvait_foundation.network.ApiClient;
@@ -42,49 +41,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*APIService apiService = ApiClient.getClient().create(APIService.class);
-        Call<List<ResponseModel>> call = apiService.getResponseData(100);
-        call.enqueue(new Callback<List<ResponseModel>>() {
-            @Override
-            public void onResponse(Call<List<ResponseModel>> call, Response<List<ResponseModel>> response) {
-                if (response.isSuccessful()) {
-                    // Handle successful response
-                    data = response.body();
-                    if (data != null) {
-                        Log.d("mytag", "Response data :" + gson.toJson(data));
-                        Log.d("mytag", "Response data size :" + data.size());
-                        for (int i = 0; i < data.size(); i++) {
-                            String imageStr = data.get(i).getThumbnail().getDomain() + "/" + data.get(i).getThumbnail().getBasePath() + "/0/" + data.get(i).getThumbnail().getKey();
-                            imageList.add(i, imageStr);
-                            keyList.add(i,data.get(i).getThumbnail().getBasePath());
-                        }
-                        // Toast.makeText(MainActivity.this, "onResponse success ", Toast.LENGTH_SHORT).show();
-                    }
-                    Log.d("mytag", "imageList :" + gson.toJson(imageList));
-                    Log.d("mytag", "imageList :" + imageList.size());
-                } else {
-                    // Handle error response
-                    Toast.makeText(MainActivity.this, " " + response.message(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ResponseModel>> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(MainActivity.this, "Failed to load data due to " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("mytag", "onFailure :" + t.getLocalizedMessage());
-                Log.e("mytag", "onFailure :" + call.request().url());
-            }
-        });
-
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        adapter = new GridAdapter(this,imageList,keyList);
-        recyclerView.setAdapter(adapter);
-
-        ImageCache imageCache = new ImageCache(MainActivity.this);
-        imageCache.cacheImages(imageList);*/
 
         // Execute network request in a background thread
         new AsyncTask<Void, Void, List<ResponseModel>>() {
